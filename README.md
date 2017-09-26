@@ -97,7 +97,7 @@ project portfolio
 - Extensive use of pandas, numpy, gridsearch, time series, and other data science tools 
 - Project landed me a 3rd round interview at quant company, Quantopian, despite having no finance background 
 
-<img src="https://raw.githubusercontent.com/momonala/quantitative_finance/master/files/z_example.png" width="800", alt="raw" />
+<img src="https://raw.githubusercontent.com/momonala/quantitative_finance/master/files/z_example.png" width="800" alt="raw" />
 
 ----------------------------------------------------------------------------------------------------------
 
