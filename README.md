@@ -79,14 +79,14 @@ project portfolio
 - Used 4 Biosensors: EEG (brainwaves), EMG (muscle contractions), ECG (heart rate), and breath rate
     - each of these inputs translated into a muscal output ex. musical tension, chords, tempo 
 
-[<img src="" width="400", alt="raw" />](https://www.youtube.com/watch?v=mQc6FYXu02Q&feature=youtu.be "test")
+[<img src="https://raw.githubusercontent.com/momonala/Insula-V2/master/documentation/youtubev1.png" width="400" alt="raw" />](https://www.youtube.com/watch?v=mQc6FYXu02Q&feature=youtu.be "test")
     
 ### [Insula (V.2)](https://github.com/momonala/Insula-V2)
 
 - As a solo project I created a haptic glove to create music from hand gestures 
 - Custom built hardware, firmware, software 
 
-[<img src="https://raw.githubusercontent.com/momonala/Insula-V2/master/documentation/youtube.png" width="500", alt="raw" />](https://www.youtube.com/watch?v=Azrm98Bf4nk "test")
+[<img src="https://raw.githubusercontent.com/momonala/Insula-V2/master/documentation/youtube.png" width="500" alt="raw" />](https://www.youtube.com/watch?v=Azrm98Bf4nk "test")
 
 -----------------------------------------------------------------------------------------------------------
 
