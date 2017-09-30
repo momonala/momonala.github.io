@@ -18,29 +18,34 @@
 
 -------------------------------------------------------------------------------------
 
-## Portfolio of Selected Projects 
+## Portfolio
 
-- Click the project links to view code, documentation & in-depth write ups 
-
-### Table of Contets: 
+### Table of Contents: 
 
 #### Udacity Self Driving Car Nanodegree - Term 1 
 
 [Laneline & Vehicle Detection for Autonomous Cars](https://github.com/momonala/udacity_carND_term1/tree/master/project5_vehicle_detection)
-[Traffic Sign Detection ](https://github.com/momonala/udacity_carND/tree/master/project2_traffic_sign_classifier)
+
+[Traffic Sign Detection](https://github.com/momonala/udacity_carND/tree/master/project2_traffic_sign_classifier)
+
 [Behavioral Cloning Neural Net](https://github.com/momonala/udacity_carND/tree/master/project3_behavioral_cloning)
 
 #### Work/School Projects 
 
 [Cell Colony Counting](https://github.com/momonala/imaging_and_vision/tree/master/cell_counting)
+
 [Insula](https://github.com/momonala/Insula-V2) (see V1)
+
 [Data Science Tutorials](https://github.com/momonala/DS_tutorials)
 
 #### Personal Projects 
 
 [Insula](https://github.com/momonala/Insula-V2) (see V2)
+
 [Quantitative Finance](https://github.com/momonala/quantitative_finance)
+
 [Optical Heart-Rate Detection Via Webcam](https://github.com/momonala/optical_heart_rate)
+
 [Biobots Website and Data Science](https://github.com/momonala/biobots)
 
 -------------------------------------------------------------------------------------
