@@ -2,11 +2,13 @@
 
 [LinkedIn](https://www.linkedin.com/in/mohit-nalavadi-8a366088/)
 
+[Resume](https://github.com/momonala/portfolio/mohitResume.pdf)
+
 -------------------------------------------------------------------------------------
 
 ## Skillset: 
 
-| Proficient   | Working Knowledge  |  Actively Learning 
+| Excellent    | Working Knowledge  |  Actively Learning 
 |--------------|--------------------|--------------------
 | Python       | Tensorflow         | C++
 | Data Science | Arduino            | SLAM
@@ -29,6 +31,19 @@
 [Traffic Sign Detection](https://github.com/momonala/udacity_carND/tree/master/project2_traffic_sign_classifier)
 
 [Behavioral Cloning Neural Net](https://github.com/momonala/udacity_carND/tree/master/project3_behavioral_cloning)
+
+#### Udacity Deep Learning Foundations 
+
+[Project 1: Neural Network from Scratch](https://github.com/momonala/udacity_deeplearning_ND/blob/master/first-neural-network/Your_first_neural_network.ipynb)
+
+[Project 2: Cifar Image Classificaiton with a convnet](https://github.com/momonala/udacity_deeplearning_ND/blob/master/image-classification/dlnd_image_classification.ipynb)
+
+[Project 3: Recurrent Neural Net for TV Script generation](https://github.com/momonala/udacity_deeplearning_ND/blob/master/tv-script-generation/dlnd_tv_script_generation.ipynb)
+
+[Project 4: Machine Translation - French to English](https://github.com/momonala/udacity_deeplearning_ND/blob/master/language-translation/dlnd_language_translation.ipynb)
+
+[Project 5: Face Generation with GANs](https://github.com/momonala/udacity_deeplearning_ND/blob/master/face_generation/dlnd_face_generation.ipynb)
+
 
 #### Work/School Projects 
 
