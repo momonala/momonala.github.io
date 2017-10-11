@@ -2,7 +2,7 @@
 
 [LinkedIn](https://www.linkedin.com/in/mohit-nalavadi-8a366088/)
 
-[Resume](https://github.com/momonala/portfolio/mohitResume.pdf)
+[Resume](blob:null/aa8d72a5-0941-4b66-a999-09077c25db37)
 
 -------------------------------------------------------------------------------------
 
