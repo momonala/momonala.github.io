@@ -32,19 +32,6 @@
 
 [Behavioral Cloning Neural Net](https://github.com/momonala/udacity_carND/tree/master/project3_behavioral_cloning)
 
-#### Udacity Deep Learning Foundations 
-
-[Project 1: Neural Network from Scratch](https://github.com/momonala/udacity_deeplearning_ND/blob/master/first-neural-network/Your_first_neural_network.ipynb)
-
-[Project 2: Cifar Image Classificaiton with a convnet](https://github.com/momonala/udacity_deeplearning_ND/blob/master/image-classification/dlnd_image_classification.ipynb)
-
-[Project 3: Recurrent Neural Net for TV Script generation](https://github.com/momonala/udacity_deeplearning_ND/blob/master/tv-script-generation/dlnd_tv_script_generation.ipynb)
-
-[Project 4: Machine Translation - French to English](https://github.com/momonala/udacity_deeplearning_ND/blob/master/language-translation/dlnd_language_translation.ipynb)
-
-[Project 5: Face Generation with GANs](https://github.com/momonala/udacity_deeplearning_ND/blob/master/face_generation/dlnd_face_generation.ipynb)
-
-
 #### Work/School Projects 
 
 [Cell Colony Counting](https://github.com/momonala/imaging_and_vision/tree/master/cell_counting)
@@ -62,6 +49,19 @@
 [Optical Heart-Rate Detection Via Webcam](https://github.com/momonala/optical_heart_rate)
 
 [Biobots Website and Data Science](https://github.com/momonala/biobots)
+
+#### Udacity Deep Learning Foundations 
+
+[Project 1: Neural Network from Scratch](https://github.com/momonala/udacity_deeplearning_ND/blob/master/first-neural-network/Your_first_neural_network.ipynb)
+
+[Project 2: Cifar Image Classificaiton with a convnet](https://github.com/momonala/udacity_deeplearning_ND/blob/master/image-classification/dlnd_image_classification.ipynb)
+
+[Project 3: Recurrent Neural Net for TV Script generation](https://github.com/momonala/udacity_deeplearning_ND/blob/master/tv-script-generation/dlnd_tv_script_generation.ipynb)
+
+[Project 4: Machine Translation - French to English](https://github.com/momonala/udacity_deeplearning_ND/blob/master/language-translation/dlnd_language_translation.ipynb)
+
+[Project 5: Face Generation with GANs](https://github.com/momonala/udacity_deeplearning_ND/blob/master/face_generation/dlnd_face_generation.ipynb)
+
 
 -------------------------------------------------------------------------------------
 
