@@ -8,11 +8,11 @@
 
 | Excellent          | Strong     | Working Knowledge |
 |--------------------|------------|-------------------|
-| Python             | LSTMs      | Tensorflow        |
-| Data Science       | NLP        | Spark             |
-| OpenCV             | C++        | Kalman Filters    |
-| Keras              | Biosensors | Flask             |
-| Sklearn            | Arduino    |                   |
+| Python             | Flask      | Tensorflow        |
+| Data Science       | C++        | Spark             |
+| OpenCV             | Arduino    | Kalman Filters    |
+| Keras              | REST       | PID Controllers   |
+| Sklearn            | Biosensors |                   |
 | CNNs, segmentation |            |                   |
 
 -------------------------------------------------------------------------------------
