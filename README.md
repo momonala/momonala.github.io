@@ -35,7 +35,7 @@ imaging and blind source separation.” Optics Express 18 (2010)](https://www.os
 
 -------------------------------------------------------------------------------------
 
-## Udacity Self Driving Car, Deep Learning and Robotics Nanodegree Inspired Projects
+## Udacity Self Driving Car Nanodegree Inspired Projects
 
 #### [Deep Tesla](https://github.com/momonala/deeptesla)
 
@@ -54,9 +54,10 @@ Developed a Unet for semantic segmentation of cars on the road from a dashcam im
 
 ## Work/School Projects 
 
-#### [Data Science Tutorials](https://github.com/momonala/programming-notes/tree/master/data_science)
+#### [Data Science Tutorials](https://github.com/momonala/programming-notes/)
 
-For my work as a data science educator at General Assembly, I wrote several tutorials for my students explaining arcane data science topics that were not discussed in class. You can find them here. 
+For my work as a data science educator at General Assembly, I wrote several tutorials for my students explaining arcane data science topics that were not discussed in class. I wrote additional tutorials on Cython, Deep Learning Best Practices, Python Tricks, Computer Vision, and more. 
+
 
 #### [Watch Face Error Detection](https://github.com/momonala/image-processing-projects/tree/master/watch_faces)
 
