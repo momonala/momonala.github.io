@@ -1,84 +1,74 @@
-# Mohit Nalavadi 
+# [Start Bootstrap - Resume](https://startbootstrap.com/template-overviews/resume/)
 
-### [LinkedIn](https://www.linkedin.com/in/mohit-nalavadi) | [Resume](https://github.com/momonala/portfolio/mohitResume.pdf)
+[Resume](https://startbootstrap.com/template-overviews/resume/) is a resume and CV theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This theme features a fixed sidebar with content sections to build a simple, yet elegant resume.
 
--------------------------------------------------------------------------------------
+## Preview
 
-I am a data scientist with a deep interest in computer vision and biology. Previous experience includes 3 years studying spaceflight biomechanics research at [NASA Ames](https://generalassemb.ly/), teaching data science at [General Assembly](https://generalassemb.ly/), and machine learning APIs for eCommerce at [Commercetools GmbH](https://commercetools.com/) in Berlin. 
+[![Resume Preview](https://startbootstrap.com/assets/img/templates/resume.jpg)](https://blackrockdigital.github.io/startbootstrap-resume/)
 
-I take pride in writing clear, concise, maintainable code in Python (and sometimes C++). I have a strong set of skills in Numpy, pandas, sklearn, OpenCV, dask, Selenium, Dash, and other scientific computing libraries.
+**[View Live Preview](https://blackrockdigital.github.io/startbootstrap-resume/)**
 
-Overall, I just love building things.
+## Status
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-resume/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/startbootstrap-resume.svg)](https://www.npmjs.com/package/startbootstrap-resume)
+[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-resume.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-resume)
+[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-resume/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-resume)
+[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-resume/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-resume?type=dev)
 
----------
+## Download and Installation
 
-## Personal Projects:
+To begin using this template, choose one of the following options to get started:
+* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/resume/)
+* Install via npm: `npm i startbootstrap-resume`
+* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-resume.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-resume)
 
-#### [Insula](https://github.com/momonala/Insula-V2) (see V2)
+## Usage
 
-A continuation of my senior thesis project - this time using a haptic glove to give more intentional control to the physiological based music. Built all hardware and software myself this time, using Arduino, Python, ChucK, and the awesome HSC Electronics store in Sunnyvale :) 
+### Basic Usage
 
-[<img src="https://raw.githubusercontent.com/momonala/insula_v2/master/docs/youtube.png" width="500" alt="raw" />](https://www.youtube.com/watch?v=Azrm98Bf4nk "test")
+After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
 
-#### [Quantitative Finance](https://github.com/momonala/quantitative_finance)
+### Advanced Usage
 
-I Built a novel algorithm using adaptive Bollinger Bars to predict stock prices. Back tested across 900 tickers and 12+ years of stock data from Quandl. I also built a visualization app in Dash.
+After installation, run `npm install` and then run `gulp dev` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
 
-<img src="https://raw.githubusercontent.com/momonala/quantitative_finance/master/img/app_page.png" width="700" alt="raw" />
+#### Gulp Tasks
 
-#### [Optical Heart-Rate Detection Via Webcam](https://github.com/momonala/image-processing-projects/tree/master/optical_heart_rate)
+- `gulp` the default task that builds everything
+- `gulp dev` browserSync opens the project in your default browser and live reloads when changes are made
+- `gulp css` compiles SCSS files into CSS and minifies the compiled CSS
+- `gulp js` minifies the themes JS file
+- `gulp vendor` copies dependencies from node_modules to the vendor directory
 
-This is a real-time computer vision application to measure heart-rate from changes in optical intensity via a webcam. Implementation of MIT paper: [“Non-
-contact, automated cardiac pulse measurements using video
-imaging and blind source separation.” Optics Express 18 (2010)](https://www.osapublishing.org/oe/abstract.cfm?uri=oe-18-10-10762)
+You must have npm and Gulp installed globally on your machine in order to use these features.
 
--------------------------------------------------------------------------------------
+## Troubleshooting and Help
 
-## Udacity Self Driving Car, Deep Learning and Robotics Nanodegree Inspired Projects
+Start Bootstrap has a public Slack channel which is a great place to ask questions about this template and all things related to Start Bootstrap.
 
-#### [Deep Tesla](https://github.com/momonala/deeptesla)
+**[Click here to join the Slack channel!](https://startbootstrap-slack.herokuapp.com/)**
 
-Developed a behavioral cloning algorithm to predict steering angle commands from dashcam images. Additionally, I tested the efficacy of using Singlar Value Decomposition as a preprocessing step for background removal of stationary objects in the frame (dashboard, reflections etc). Used MIT's Deep Tesla dataset. 
+## Bugs and Issues
 
-#### [Extended & Unscented Kalman Filters](https://github.com/momonala/autonomousVehicle_nanodegree_udacity/tree/master/project7-unscented_kalman_filter)
+Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-resume/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/resume/).
 
-Created Unscented and Extended Kalman Filters in C++ for sensor fusion/filtering from a lidar & radar data simulator. Utilized the Eigen library. 
+## About
 
-#### [Unet for Semantic Segmentation](https://github.com/momonala/semantic_segmentation_cars)
+Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
 
-Developed a Unet for semantic segmentation of cars on the road from a dashcam image. Implemented the original architecture from the Unet paper on arXiv. Trained several iterations on a GPU, including ones for gradient checks, a control baseline, and augmentation/regularization. FCN model to come. 
+* https://startbootstrap.com
+* https://twitter.com/SBootstrap
 
+Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
 
--------------------------------------------------------------------------------------
+* http://davidmiller.io
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
 
-## Work/School Projects 
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
-#### [Data Science Tutorials](https://github.com/momonala/programming-notes/tree/master/data_science)
+## Copyright and License
 
-For my work as a data science educator at General Assembly, I wrote several tutorials for my students explaining arcane data science topics that were not discussed in class. You can find them here. 
-
-#### [Watch Face Error Detection](https://github.com/momonala/image-processing-projects/tree/master/watch_faces)
-
-
-This was a contract job I did to build a computer vision pipeline that will detect defects in watch faces on an assembly line. 
-
-<img src="https://raw.githubusercontent.com/momonala/image-processing-projects/master/watch_faces/img/error.jpg" width="700" alt="raw"/>
-
-#### [Cell Colony Counting]((https://github.com/momonala/image-processing-projects/tree/master/cell_counting)
-
-For my work at as an autmation engineer intern at Amyris, a synthetic biology company, I improved the computer vision algorithms for a automated cell-colony-counter robot. 
-
-<img src="https://raw.githubusercontent.com/momonala/imaging_and_vision/master/cell_counting/img/disp.png" width="700" alt="raw" />
-
-#### [Insula](https://github.com/momonala/Insula-V2) (see V1)  
-
-For my senior thesis project, I worked in a team of four to create a unique bioedical device, Insula. Insula is a suite of biosensors - EEG, EMG, ECG, and breath rate - that convert physiologyical events, like a heart-beat, into a musical events, like drum beat. The idea is to use technology to look inwards, as a form of meditation and music therapy. 
-
-[<img src="https://raw.githubusercontent.com/momonala/Insula-V2/master/documentation/youtubev1.png" width="400" alt="raw" />](https://www.youtube.com/watch?v=mQc6FYXu02Q&feature=youtu.be "test")
-
-#### [Data Science on US Visa Applications](https://github.com/momonala/machine_learning_projects/tree/master/USVisas_bigData_project)
-
-For my big data course, we analyzed the acceptance rates for various Visa types for the USA. The results were quite interesting. 
-
-------
+Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-resume/blob/gh-pages/LICENSE) license.
