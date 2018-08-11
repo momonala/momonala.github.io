@@ -65,7 +65,7 @@ This was a contract job I did to build a computer vision pipeline that will dete
 
 <img src="https://raw.githubusercontent.com/momonala/image-processing-projects/master/watch_faces/img/error.jpg" width="700" alt="raw"/>
 
-#### [Cell Colony Counting]((https://github.com/momonala/image-processing-projects/tree/master/cell_counting)
+#### [Robotic Vision for Cell Colony Counting](https://github.com/momonala/image-processing-projects/tree/master/cell_counting)
 
 For my work at as an autmation engineer intern at Amyris, a synthetic biology company, I improved the computer vision algorithms for a automated cell-colony-counter robot. 
 
