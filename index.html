@@ -63,13 +63,13 @@
             <span class="text-primary">Nalavadi</span>
           </h1>
           <p class="lead mb-5">I'm a bioengineer turned data scientist with a curiosity for exploring and
-                               working with new technologies in biotech, machine learning, and automation.
+                               working with new technologies in biotech, scientific computing, and music information.
           
                               <br><br>Overall, I just love building things.
           </p>
 
-          <p> Current: Data Scientist @ Commercetools GmbH, Berlin, DE <br>
-              Education: B.Eng Biomolecular Engineering @ Santa Clara University
+          <p> Current: Data Scientist @ commercetools GmbH, Berlin, DE <br>
+              Education: B.Eng Biomolecular Engineering @ Santa Clara University, California
           </p>
 
           <p><a href="https://github.com/momonala/momonala.github.io/blob/master/mohitResume.pdf"> Resume </a></p>
@@ -182,6 +182,22 @@
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
 
+              <!-- Aposynthese -->
+              <div class="resume-item d-flex flex-column flex-md-row">
+                  <div class="resume-content mr-auto">
+                    <h3 class="mb-0">Aposynthese </h3>
+                    <div class="subheading mb-3"><a href="https://github.com/momonala/aposynthese">Github link</a></div>
+                    <p> Aposynthese is a tool to give anyone perfect pitch. It converts mp3 files into piano visualizations, giving the user
+                      the ability to learn any song they like. It works by decomposing the song's underlying constituent frequencies with the
+                      Short Time Fourier Transform (STFT), and mapping dominant frequencies to real piano notes across time. The program also
+                      leverages some advances Music Information Processing techniques, like Harmonic-Percussive Source Separation (HPSS) to
+                      remove drum beats and iterative cosine similarity to remove vocals. Additional custom signal processing cleans up the
+                      STFT spectrograms and allows smoother tonality mapping that mimics the human ear. </p>
+
+                  </div>
+                </div>
+
+                <!-- Insula -->
                 <div class="resume-item d-flex flex-column flex-md-row">
                     <div class="resume-content mr-auto">        
                     <h3 class="mb-0">Insula</h3>
@@ -205,84 +221,76 @@
                       <div class="box"><iframe src="https://www.youtube.com/embed/Azrm98Bf4nk" frameborder="0" scrolling="no" width="490" height="300" align="right"></iframe> </div>
                     </div>
                   </div>
-                  
-              <div class="resume-item d-flex flex-column flex-md-row">
-                <div class="resume-content mr-auto">   
-                    <h3 class="mb-0">Quantitative Finance Experiments</h3>
-                    <div class="subheading mb-3"><a href="https://github.com/momonala/quantitative_finance">Github link</a></div>
-                    <p>I Built a novel algorithm using adaptive Bollinger Bars (Z-Scores) to predict stock prices. Back tested across 900 tickers
-                      and 12+ years of stock data from Quandl. I also built an interactive visualization app in with Python's Dash library.</p>
-                    <img src="https://raw.githubusercontent.com/momonala/quantitative_finance/master/img/app_page.png" width="1000" alt="raw" />
-                  </div>
-              </div>
               
-              <div class="resume-item d-flex flex-column flex-md-row">
-                  <div class="resume-content mr-auto">   
-                    <h3 class="mb-0">Optical Heart-Rate Detection Via Webcam</h3>
-                    <div class="subheading mb-3"><a href="https://github.com/momonala/image-processing-projects/tree/master/optical_heart_rate">Github link</a></div>
-                    <p>This is a real-time computer vision application to measure heart-rate from changes in optical intensity via a webcam. It uses Indepedent Component Analysis (ICA)
-                      to tease out the frequency of the heart rate based on the changing redness of skin during a heart contraction.
-                      Implementation of MIT paper: <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-18-10-10762">
-                        “Non-contact, automated cardiac pulse measurements using video imaging and blind source separation. Optics Express 18 (2010)"</a></p>
-                </div>
-              </div>
-
-              <div class="resume-item d-flex flex-column flex-md-row">
+              <!-- Deep Learning Projects -->
+              <br><div class="resume-item d-flex flex-column flex-md-row">
                   <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Udacity Self-Driving-Car Inspired Projects</h3>
-                    <p>After taking Deep Learning, Computer Vision, and Self-Driving-Car courses with Udacity, I was inspired to develop some projects of my own, 
-                      using unique data sets and new research methods not covered in class. </p>
-                    <p><a href="https://github.com/momonala/deeptesla"> Deep Tesla </a>
-                      Developed a behavioral cloning algorithm to predict steering angle commands from dashcam images. Additionally, I tested the efficacy of using
-                      Singlar Value Decomposition as a preprocessing step for background removal of stationary objects in the frame (dashboard, reflections etc).
-                      Used <a href="https://selfdrivingcars.mit.edu/">MIT's Deep Tesla dataset</a>. </p>
+                    <h3 class="mb-0">Deep Learning Projects </h3>
+                    <p> I learned Machine Learning through textbooks, Andrej Karpathy's CS231n course, and Udacity courses.
+                    There are some of my bigger projects I worked on through my learnings and till now. </p>
 
-                    <p><a href="https://github.com/momonala/autonomousVehicle_nanodegree_udacity/tree/master/project7-unscented_kalman_filter"> Extended and Unscented Kalman Filters </a>
-                      Created Unscented and Extended Kalman Filters in C++ for sensor fusion/filtering from a lidar and radar data simulator. Utilized the Eigen library.
-                      Blog post <a href="https://medium.com/@mnalavadi/kalman-filters-d708ba89deba">here</a>.</p>
-                    
-                    <p><a href="https://github.com/momonala/semantic_segmentation_cars"> U-Net for Semantic Segmentation </a>
-                      Developed a U-Net for semantic segmentation of cars on the road from a dashcam image. Implemented the original architecture from the <a href="https://arxiv.org/abs/1505.04597">U-Net paper on arXiv</a>.
-                      Trained several iterations on a GPU, including ones for gradient checks, a control baseline, and augmentation/regularization. </p>
+                    <h4><a href="https://github.com/momonala/deeptesla"> Deep Tesla </a></h4>
+                    <p> Developed a behavioral cloning algorithm to predict steering angle commands from dashcam images. Additionally, I tested the efficacy of using
+                    Singlar Value Decomposition as a preprocessing step for background removal of stationary objects in the frame (dashboard, reflections etc).
+                    Used <a href="https://selfdrivingcars.mit.edu/">MIT's Deep Tesla dataset</a>. </p>
+
+                    <h4><a href="https://github.com/momonala/semantic_segmentation_cars"> U-Net for Semantic Segmentation </a></h4>
+                    <p>Developed a U-Net for semantic segmentation of cars on the road from a dashcam image. Implemented the original architecture from the <a href="https://arxiv.org/abs/1505.04597">U-Net paper on arXiv</a>.
+                    Trained several iterations on a GPU, including ones for gradient checks, a control baseline, and augmentation/regularization. </p>
+
                   </div>
                 </div>
 
+              <!-- Classical Computer Vision Projects -->
+          <br><div class="resume-item d-flex flex-column flex-md-row">
+            <div class="resume-content mr-auto">
+                <h3 class="mb-0">Classical Computer Vision Projects </h3>
 
+                <h4><a href="https://github.com/momonala/image-processing-projects/tree/master/watch_faces">Watch Face Error Detection </a></h4>
+                <p>This was a contract job to build a computer vision pipeline for detecting defects in watch faces on an assembly line.
+                It uses OpenCV's SIFT Detector, a custom statistcal model based on a Gaussian Kernel Density Estimation and Homography Transform for image alignment, and a simple comparison for errors.</p>
+                  <img src="https://raw.githubusercontent.com/momonala/image-processing-projects/master/watch_faces/img/error.jpg" width="900" alt="raw"/>
+
+                <h4><a href="https://github.com/momonala/image-processing-projects/tree/master/cell_counting">Robotic Vision for Cell Colony Counting </a></h4>
+                <p>For my work at as an autmation engineer intern at Amyris, a synthetic biology company, I improved the computer vision algorithms for a automated cell-colony-counter robot.
+                The algorithm uses a recursive Hough Circles to detect well plates, and cells, plus basic image filtering and thresholding.  It significantly improved both quality and speed of identifications.  </p>
+                <img src="https://raw.githubusercontent.com/momonala/imaging_and_vision/master/cell_counting/img/disp.png" width="700" alt="raw" />
+
+                <h4><a href="https://github.com/momonala/image-processing-projects/tree/master/optical_heart_rate">Optical Heart-Rate Detection Via Webcam </a></h4>
+                <p> This is a real-time computer vision application to measure heart-rate from changes in optical intensity via a webcam. It uses Indepedent Component Analysis (ICA)
+                to tease out the frequency of the heart rate based on the changing redness of skin during a heart contraction.
+                Implementation of MIT paper: <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-18-10-10762">
+                “Non-contact, automated cardiac pulse measurements using video imaging and blind source separation. Optics Express 18 (2010)"</a></p>
+
+              </div>
+            </div>
+
+              <!-- Other Projects -->
               <div class="resume-item d-flex flex-column flex-md-row">
                 <div class="resume-content mr-auto">
-                  <h3 class="mb-0">Data Science and Programming Tutorials</h3>
-                  <div class="subheading mb-3"><a href="https://github.com/momonala/programming-notes/">Github link</a></div>
+                  <h3 class="mb-0">Other Projects </h3>
+
+                  <h4><a href="https://github.com/momonala/programming-notes/">Data Science and Programming Tutorials </a></h4>
                   <p>For my work as a data science educator at General Assembly,
-                      I wrote several tutorials for my students explaining arcane data science topics that were not discussed in class. I wrote additional 
-                      tutorials on Cython, Deep Learning Best Practices, Python Tricks, Computer Vision, C++, and more. Ongoing project as cool topics arise.  </p>
+                  I wrote several tutorials for my students explaining arcane data science topics that were not discussed in class. I wrote additional
+                  tutorials on Cython, Deep Learning Best Practices, Python Tricks, Computer Vision, C++, and more. Ongoing project as cool topics arise.  </p>
+
+                  <h4><a href="https://github.com/momonala/quantitative_finance">Quantitative Finance Experiments</a></h4>
+                  <p>I Built a novel algorithm using adaptive Bollinger Bars (Z-Scores) to predict stock prices. Back tested across 900 tickers
+                  and 12+ years of stock data from Quandl. I also built an interactive visualization app in with Python's Dash library.</p>
+                  <img src="https://raw.githubusercontent.com/momonala/quantitative_finance/master/img/app_page.png" width="1000" alt="raw" />
+
                 </div>
               </div>
 
-              <div class="resume-item d-flex flex-column flex-md-row">
-                  <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Watch Face Error Detection</h3>
-                    <div class="subheading mb-3"><a href="https://github.com/momonala/image-processing-projects/tree/master/watch_faces">Github link</a></div>
-                    <p>This was a contract job to build a computer vision pipeline for detecting defects in watch faces on an assembly line. 
-                      It uses OpenCV's SIFT Detector, a custom statistcal model based on a Gaussian Kernel Density Estimation and Homography Transform for image alignment, and a simple comparison for errors.</p>
-                    <img src="https://raw.githubusercontent.com/momonala/image-processing-projects/master/watch_faces/img/error.jpg" width="900" alt="raw"/>
-                  </div>
-              </div>
 
-              <div class="resume-item d-flex flex-column flex-md-row">
-                  <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Robotic Vision for Cell Colony Counting</h3>
-                    <div class="subheading mb-3"><a href="https://github.com/momonala/image-processing-projects/tree/master/cell_counting">Github link</a></div>
-                    <p>For my work at as an autmation engineer intern at Amyris, a synthetic biology company, I improved the computer vision algorithms for a automated cell-colony-counter robot.
-                      The algorithm uses a recursive Hough Circles to detect well plates, and cells, plus basic image filtering and thresholding.  It significantly improved both quality and speed of identifications.  </p>
-                    <img src="https://raw.githubusercontent.com/momonala/imaging_and_vision/master/cell_counting/img/disp.png" width="700" alt="raw" />
-                </div>
-              </div>
-
+<!-- ..............................................................................-->
 
         </div>
       </div>
     </div>
     </section>
+    </div>
       <!-- .................... Publications ..................................... -->
       <hr class="m-0">
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="pubs">
@@ -313,8 +321,6 @@
           </div>
         </div>
       </section>
-
-    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
