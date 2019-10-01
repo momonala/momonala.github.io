@@ -1,2 +1,4 @@
 .ipynb_checkpoints/
-Portfolio .ipynb
+.ipynb
+.idea/
+__pycache__/
