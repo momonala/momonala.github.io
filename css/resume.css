@@ -10,6 +10,20 @@ body {
   color: #868e96;
 }
 
+.skip-to-content {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #BD5D38;
+  z-index: 1000;
+}
+
+.skip-to-content:focus {
+  left: 0;
+}
+
 @media (min-width: 992px) {
   body {
     padding-top: 0;
@@ -189,4 +203,9 @@ a {
 
 a:hover, a:focus, a:active {
   color: #824027;
+}
+
+a:focus-visible {
+  outline: 2px solid #BD5D38;
+  outline-offset: 2px;
 }

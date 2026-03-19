@@ -1,0 +1,302 @@
+Commercetools:
+Reverse Image Search Engine
+
+<reverse_image_search_brief>
+
+SUMMARY
+- End-to-end ownership of a production reverse image search pipeline (Image Search API) at commercetools. Not generative AI, but same building blocks: embeddings, retrieval, scalable inference, API design, monitoring. Took the feature from early prototype through deployment, scaling, and monitoring in ~3 months. Goal: return visually similar product images given a query image.
+
+PROBLEM & GOAL
+- Return visually similar product images given a query image (reverse image search). Support indexing of customer product catalogs and low-latency query API so clients could build “search by image” experiences (e.g. snap a photo, find similar products).
+
+TECHNICAL APPROACH
+- Model: Pretrained VGG16 CNN in Keras to extract dense feature vectors (embeddings) from images. VGG16 achieves ~92.7% top-5 on ImageNet; embeddings capture semantic meaning beyond pixel similarity. Dimensionality is VGG16-typical (e.g. 4096-d or 512-d from final layers depending on which layer was used); we tuned dimensionality vs. latency and storage.
+- Similarity: Cosine similarity between query embedding and indexed embeddings (not Euclidean—cosine measures correlation/direction, better for high‑dimensional features). Cosine computed in SQL as a linear combination of columns for retrieval.
+- Inference: Model hosted on Google ML Engine for elastic scaling with indexing and query demand.
+
+ARCHITECTURE & INFRASTRUCTURE
+- Indexing: Asynchronous processing of customer catalogs via Celery workers. Each unique image URL was vectorized, embeddings stored in PostgreSQL with product metadata. Many-to-many product–image mapping stored in separate tables. Hundreds of thousands of images indexed per catalog.
+- Retrieval: User submits image via HTTP → embedding generated → cosine similarity computed in SQL against stored vectors → top‑k closest matches returned as image URLs in JSON.
+- Storage: PostgreSQL for embeddings and metadata (no dedicated vector DB). Exact cosine search in SQL was sufficient for our scale and kept ops simple.
+
+SCALE, LATENCY, PERFORMANCE
+- Latency target: responses within ~3 seconds end-to-end.
+- Scale: Hundreds of thousands of images per customer catalog; indexing and query load handled by ML Engine scaling and Celery.
+- Tradeoff: Tuned embedding dimensionality to keep retrieval quality while staying within latency and storage budgets.
+
+TIMELINE & OWNERSHIP
+- ~3 months from prototype to production. I was the main owner (junior at the time); one other SWE supported with DevOps and general guidance. I drove model choice, pipeline design, API, and integration; he helped with deployment and infrastructure.
+
+VALIDATION & QUALITY
+- Validation was hard: beyond training/embedding loss we had no automated metric for “visually similar” in production. We manually inspected image results to ensure the system was retrieving sensible matches. No formal offline metric (e.g. recall@k on labeled pairs); quality was judged by inspection and adoption.
+
+TRADEOFFS & KEY DECISIONS
+- Pretrained model vs. training our own: Shipped faster with strong baseline; gave up domain-specific optimization (e.g. e‑commerce‑tuned). Plan was to improve with more e‑commerce data and feedback.
+- PostgreSQL vs. dedicated vector DB: In 2018, FAISS and production vector DBs were less mature. Staying in PostgreSQL reduced new infra and ops risk; exact cosine in SQL was fast enough at our scale.
+- Embedding dimensionality: Balanced retrieval quality vs. latency and storage; tuned in practice.
+
+CHALLENGES & LESSONS
+- Validation: Relying on manual inspection is limiting; would want labeled similarity data and recall@k (or similar) for iteration.
+- Scale and tooling: Exact search in SQL doesn’t scale to very large or very high‑QPS regimes; modern vector DBs or approximate search (e.g. FAISS) would be better at larger scale.
+
+WHAT I’D DO DIFFERENTLY TODAY
+- Use a dedicated vector DB or FAISS for indexing and retrieval at scale.
+- Use a richer or more modern embedding model (e.g. CLIP, or domain‑fine‑tuned models) for better semantic similarity.
+- Add proper offline evaluation (labeled pairs, recall@k, etc.) and monitoring of retrieval quality.
+
+IMPACT & CUSTOMERS
+- Success measured by adoption. Carhartt was a major customer. Use cases included similar-product discovery (e.g. photo → similar items), duplicate detection, and image authentication. API enabled demos and customer integrations (e.g. demo app from commercetools using the Image Search API).
+
+TRANSFER TO GENAI / INTERVIEW TALKING POINTS
+- Same core components as many GenAI systems: embedding generation, retrieval, scalable inference, API design, production monitoring. Experience generalizes to building and scaling GenAI platforms (RAG, semantic search, embedding pipelines). Can speak to: why cosine vs. Euclidean, why PostgreSQL at the time, pretrained vs. custom training, validation challenges, and tradeoffs between simplicity and scale.
+
+</reverse_image_search_brief>
+
+Grandperspective: 
+Cloud Sync Backup System
+
+<grandperspective_cloud_backup_etl_brief>
+
+SUMMARY
+- At Grandperspective GmbH: early-warning gas leak detection for industrial factories using IR optical measurements. I helped build data infrastructure (signal processing, data visualization, Google Cloud, ETLs) and worked closely with Data Science and DevOps on platform uptime, data availability, and end-to-end monitoring and testing. I owned the cloud backup system and ETL systems. Remote sensors were on-prem, often in deserts or locations without reliable internet. Devices produced one image and ~60–100 infrared spectra every 6 seconds → several GB per hour. Data was backed up in batches (streaming was tested): package Postgres data into .avro → upload to GCS for archival → Cloud Function initially dumped into BigQuery; later the second half was refactored to Apache Beam/Dataflow for aggregations, pluggable aggregation types, and analysis over months of data.
+
+ARCHITECTURE (BACKUP + ETL)
+- On-prem: Postgres (later TimescaleDB) with sensor data (images, IR spectra, metadata). Indexes on time and scan area; large columns (images, large JSON settings, IR spectra) lazy-loaded where possible.
+- Backup path: Batch packaging of Postgres data into .avro files → upload to GCS (archival). Retries and checks for incomplete/finished uploads; backfilling scripts for longer outages when internet returned.
+- Ingest to cloud: Initially Cloud Function dumped GCS data into BigQuery. Later refactored to Apache Beam/Dataflow for ETL: aggregations, pluggable aggregation types, support for viewing months of data.
+- Scale: Several GB per hour per site; batches sized for reliability over poor links.
+
+<schema_evolution_qa />
+- We kept migrations backwards compatible: only adding nullable columns or removing columns (no breaking changes). We used Alembic for versioned migrations so we had rollbacks and clear traceability. Testing flow: SQLite first, then staging Postgres, then live Postgres. That gave us a safe path to evolve schema without breaking running ingest or analytics.
+
+<late_arriving_data_qa />
+- Late-arriving data was acceptable; we had no real-time use case. Real-time needs were served from the live on-prem Postgres, not the cloud pipeline. We did have retry mechanisms and alerting for missing or incomplete batches. The main cause of missing data was poor internet and failed uploads, so we used retries, checked for internet before starting uploads (fail early), and backfilling scripts to detect longer gaps and retry in batches when connectivity returned.
+
+<idempotency_qa />
+- BigQuery does not guarantee exactly-once ingestion; as a distributed system it can produce duplicates, and we had to handle that. We reduced duplicates by: (1) uploading on a fixed schedule (e.g. hourly) with each file uniquely named by hour and scan area so the same logical batch had one canonical file; (2) checking for completed uploads before attempting upload to avoid re-sending the same batch; (3) monitoring in our observability stack (e.g. Datadog) for missing and duplicate sections of data so we could tell “system down, no data expected” vs. “data genuinely missing.” Once BigQuery supported DELETE, we ran a daily job that enforced uniqueness on a composite key (time + scan area) and deleted duplicates.
+
+<biggest_failure_challenges_wins_qa />
+- Biggest frustration: unreliable internet at remote sites (deserts, no connectivity). We addressed it with retries, checking for incomplete vs. finished uploads before retrying, and backfilling scripts that detected longer failures and re-ran batches when internet was back.
+- RAM pressure: Avro files were several GB. We avoided loading whole files into memory by appending one row at a time to Avro (append-only pattern) instead of reading the full file. We also added strategic indexes (time, scan area), lazy-loaded large columns (images, large JSON, IR spectra), and migrated from Postgres to TimescaleDB for better time-based indexing and queries.
+
+<why_timescaledb_over_postgres />
+- Our workload was time-series: high-volume sensor data keyed by time and scan area, with heavy time-range queries (e.g. “last 6 hours,” “last month”). TimescaleDB is Postgres extended for time-series: (1) Hypertables automatically partition by time, so time-range filters hit fewer chunks and indexes, improving query and retention management. (2) Time-oriented compression and retention policies reduce storage and keep hot recent data fast. (3) Time-bucketed aggregations (e.g. time_bucket) are native and efficient. (4) We already had time and scan area as primary access patterns; TimescaleDB’s partitioning and indexing aligned with that and gave better performance than plain Postgres on the same schema.
+
+<if_i_redesigned_today />
+- Streaming where it helps: Use streaming ingest (e.g. Dataflow with streaming, or Pub/Sub + Dataflow) for lower latency and smaller, more frequent commits where the network allows, while keeping batch/backfill for poor connectivity.
+- Managed ingest and dedup: Use BigQuery streaming insert with insertId or batch load with idempotent keys; or use a write layer (e.g. Dataflow) that deduplicates on (time, scan area) before writing to BQ so we don’t rely on daily DELETE.
+- Schema and evolution: Use a schema registry (e.g. Avro schema in a registry) and versioned schemas so downstream (Beam/Dataflow, BQ) can handle evolution and backfills consistently.
+- Observability: Structured logging and metrics at each stage (export to GCS, load to BQ, Dataflow), with alerts on duplicate/missing windows and data freshness so we detect issues before backfill.
+- Storage and format: Consider columnar formats (e.g. Parquet) in GCS for analytics and compression; keep Avro if we need row-by-row append or schema evolution in the file layer.
+- TimescaleDB still makes sense on-prem for time-series; in the cloud we might evaluate BigQuery’s native time-partitioning and partition expiry as the single store for analytics instead of duplicating retention logic.
+
+</grandperspective_cloud_backup_etl_brief>
+
+PERSONAL / OPEN SOURCE PROJECTS
+
+REPO LINKS
+- `Trace`: https://github.com/momonala/Trace
+- `arduino-cli-tool`: https://github.com/momonala/arduino-cli-tool
+- `bathroom-button`: https://github.com/momonala/bathroom-button
+- `energy-monitor`: https://github.com/momonala/energy-monitor
+- `flight-calendar-updater`: https://github.com/momonala/flight-calendar-updater
+- `gcal-scheduler-extension`: https://github.com/momonala/gcal-scheduler-extension
+- `incognita`: https://github.com/momonala/incognita
+- `ios-health`: https://github.com/momonala/ios-health
+- `service-monitor`: https://github.com/momonala/service-monitor
+- `task-manager`: https://github.com/momonala/task-manager
+- `trainspotter`: https://github.com/momonala/trainspotter
+- `whats-on-the-menu`: https://github.com/momonala/whats-on-the-menu
+
+What's On the Menu?
+
+<whats_on_the_menu_brief>
+
+SUMMARY
+- Full-stack LLM application that translates restaurant menu photos into English and enriches them with dish explanations, pronunciations, representative images, and price conversions.
+- Good example of applied AI product work: multimodal input, structured outputs, optional downstream enrichment, and a UX designed around partial results arriving quickly.
+
+DETAILS
+- Built around a two-stage pipeline. Stage 1 validates the uploaded image, sends it to OpenAI Vision models, parses the response into structured Pydantic models, and performs currency conversion so the backend returns clean application-ready data instead of loose text.
+- Stage 2 optionally calls the Brave Image Search API to fetch representative dish images and cache them, which keeps the core translation path fast while still enriching the user experience when image lookup is useful.
+- Backend implemented in Flask with clear separation between configuration, external-service integrations, and data models; this makes the code easier to test, reason about, and extend with additional services.
+- Frontend built with Tailwind and camera support so a user can take a photo and get translations immediately while optional images stream in asynchronously, which mirrors real product tradeoffs around latency and progressive enhancement.
+- Tests mock external APIs so behavior can be verified without depending on OpenAI, image search, or currency services at test time.
+
+</whats_on_the_menu_brief>
+
+Trace
+
+<trace_brief>
+
+SUMMARY
+- iOS location-tracking application focused on GPS data collection, with an explicit emphasis on battery life and privacy.
+
+DETAILS
+- Main goal is continuous or repeated location capture on mobile while respecting the real constraints that matter in production mobile apps: power consumption, background behavior, and user trust.
+- The project is useful for talking about iOS engineering beyond CRUD apps because it sits at the boundary of mobile UX, sensors, and data collection.
+- “Optimized for battery life” is an important systems design constraint: location sampling is valuable only if the app remains practical for day-to-day use and does not drain the device.
+- “Optimized for privacy” is equally important: location data is sensitive, so the project naturally connects to permission flows, data minimization, and careful handling of user information.
+- Good example of personal work in a domain adjacent to data engineering: capture high-value raw data at the edge first, then think carefully about storage, processing, and downstream use.
+
+</trace_brief>
+
+gcal-scheduler-extension
+
+<gcal_scheduler_extension_brief>
+
+SUMMARY
+- Chrome extension that creates Google Calendar events from natural language using OpenAI to parse text into structured event data.
+
+DETAILS
+- User input is intentionally lightweight: write natural language such as a reminder or scheduling instruction, let the LLM extract title and date/time, then hand off to Google Calendar.
+- The extension converts unstructured text into a more deterministic output shape, which is a practical example of using LLMs as a parsing layer rather than as a chat interface.
+- Instead of building a full calendar backend, the tool opens the Google Calendar add-event URL; that keeps scope tight and leverages an existing product for final confirmation and editing.
+- Good example of product-minded automation: remove the repetitive “copy text, interpret date, create event” workflow without overbuilding infrastructure.
+- Useful interview talking point for LLM systems because it demonstrates prompt-driven extraction, structured output expectations, and human-in-the-loop confirmation.
+
+</gcal_scheduler_extension_brief>
+
+ios-health
+
+<ios_health_brief>
+
+SUMMARY
+- Utility for exporting data from the iOS Health app through a shortcut-based workflow.
+
+DETAILS
+- Project focuses on getting health data out of an otherwise closed mobile ecosystem into a form that can be inspected, reused, or analyzed elsewhere.
+- Uses an iOS Shortcut-based integration rather than a heavy standalone application flow, which is a pragmatic automation choice and lowers the barrier to use.
+- Strong example of personal tooling around data portability: the value is not just collecting data, but enabling a user-controlled export path from a consumer platform.
+- Relevant to discussions about mobile data pipelines because it starts at the edge device and turns personal-device data into something that can feed later analysis or automation.
+- Pairs well with other projects in your portfolio that sit at the intersection of software, user data, and lightweight automation.
+
+</ios_health_brief>
+
+arduino-cli-tool
+
+<arduino_cli_tool_brief>
+
+SUMMARY
+- Simplified CLI wrapper around `arduino-cli` with automatic board detection and a streamlined workflow.
+
+DETAILS
+- Solves a real developer-experience problem: hardware workflows often have repetitive command sequences and environment-specific friction, especially when switching boards or machines.
+- Automatic board detection removes one of the most annoying manual steps in Arduino development and makes iteration loops faster and less error-prone.
+- Good example of pragmatic tooling: instead of inventing a new hardware platform, the project improves the ergonomics of an existing one and helps developers get to “flash, test, repeat” more quickly.
+- Relevant to IoT and sensor work because it sits close to the hardware/software boundary and supports faster prototyping with microcontrollers.
+- Useful evidence that you build not only product features but also internal-quality tools that improve workflow efficiency.
+
+</arduino_cli_tool_brief>
+
+trainspotter
+
+<trainspotter_brief>
+
+SUMMARY
+- Lightweight transit-focused project for checking when the next train arrives.
+
+DETAILS
+- The core user value is immediacy: reduce the friction of checking transit timing and surface the one piece of information the user actually needs right now.
+- Good example of building around geospatial or transit data with a clear, narrow product scope instead of a broad transportation platform.
+- Shows product judgment: small utilities can still be valuable when they compress a high-frequency daily task into a faster interaction.
+- Useful as a talking point for location-aware and public-data-adjacent applications, especially when discussing how you choose scope for side projects.
+- Fits the broader pattern in your portfolio of practical software that combines data access, user convenience, and simple interfaces.
+
+</trainspotter_brief>
+
+task-manager
+
+<task_manager_brief>
+
+SUMMARY
+- Flask-based Kanban task management application with drag-and-drop workflows, structured ticket/project data models, and automated database backups.
+
+DETAILS
+- Built as a full-stack productivity app rather than just a CRUD demo: Flask backend, SQLAlchemy 2.0 ORM, Alembic migrations, Tailwind-based UI, and SortableJS-powered drag-and-drop interactions.
+- The data model supports richer task metadata than a simple todo app, including acceptance criteria, scope, prompts for AI assistants, project grouping, and explicit workflow states such as `proposed`, `todo`, `in_progress`, `done`, and `wont_do`.
+- Includes an automated scheduler that checks for database changes hourly, commits them to git, and can push off-site backups, which is a strong example of treating even small personal tooling as an operational system with persistence and recovery in mind.
+- The project has a clean deployment story: separate systemd services for the web app and backup scheduler, installation scripts for Linux/Raspberry Pi environments, and a test suite covering app, ORM, and data-model behavior.
+- Good portfolio piece for discussing end-to-end Python software engineering because it combines product UX, persistence, schema evolution, testing, and lightweight operational automation in one project.
+
+</task_manager_brief>
+
+energy-monitor
+
+<energy_monitor_brief>
+
+SUMMARY
+- Real-time home energy monitoring dashboard built around MQTT ingestion from a smart meter, a Flask web app, and a Raspberry Pi deployment target.
+
+DETAILS
+- End-to-end data path starts at the physical meter and IR reader, goes through Tasmota and an MQTT broker, lands in a Python MQTT service plus SQLite, and is then exposed through a Flask dashboard and REST API; that makes it a good example of IoT + backend + frontend integration.
+- The dashboard is not just a static chart: it supports incremental polling every 10 seconds, time-range selection, moving averages, usage summaries, keyboard shortcuts, mobile-specific views, and lightweight analytics over the stored readings.
+- The stored model captures more than a single metric, including cumulative import/export energy, per-phase power, raw payloads, and aggregated usage summaries, which makes the project a strong talking point for time-series data handling and observability at small scale.
+- Deployment is clearly productized for Raspberry Pi with separate systemd services for the web app, MQTT client, and scheduler, plus background jobs for DB health checks and periodic backups of the local SQLite database.
+- This project connects well to your professional background because it combines sensors, streaming-ish ingestion, time-series storage, visualization, and operational reliability in a smaller personal system.
+
+</energy_monitor_brief>
+
+incognita
+
+<incognita_brief>
+
+SUMMARY
+- Personal GPS tracking and travel visualization system that collects location data from mobile apps and turns it into maps, flight history, and countries-visited dashboards.
+
+DETAILS
+- The architecture is split into a data-ingestion API and a web visualization app: mobile clients POST GeoJSON location data to a Flask service, raw files are stored in a date/hour hierarchy, and curated data is loaded into SQLite for downstream querying and display.
+- The visualization layer goes beyond plotting points on a map; it includes PyDeck/Deck.gl-based GPS maps, travel history views, flight analysis, and a “passport” view of countries visited, which makes it a more complete geospatial product rather than a one-page map demo.
+- The processing pipeline pays attention to data quality and scale considerations: filtering by horizontal accuracy, deduplicating via deterministic content hashes, rebuilding the database from raw files, and using parallel processing plus WAL mode during refresh.
+- The project also includes operational monitoring through heartbeat endpoints and Telegram alerts when data streaming stops, which shows the same reliability mindset you use in production systems.
+- Strong portfolio example for geospatial data engineering because it spans collection at the edge, raw-data organization, batch rebuild workflows, interactive visualization, and monitoring.
+
+</incognita_brief>
+
+flight-calendar-updater
+
+<flight_calendar_updater_brief>
+
+SUMMARY
+- Automation tool that syncs flight details from a Google Sheet into Google Calendar by enriching rows with scraped flight metadata.
+
+DETAILS
+- Reads structured-but-incomplete flight planning data from Google Sheets, scrapes additional flight details from `aviability.com`, transforms the result into a typed `FlightInfo` model, and then creates or updates matching Google Calendar events.
+- Uses a `gcal_event_id` field in the sheet to distinguish create vs. update flows, which is a nice example of lightweight idempotency and state reconciliation across external systems.
+- Handles non-trivial domain details such as airport codes, localized times, terminals, aircraft, and timezone lookup, so it is more than just “copy data from one API to another.”
+- Includes a scheduled daemon that runs daily, making the tool practical for ongoing personal operations rather than just a one-off script.
+- Good interview example for workflow automation because it combines scraping, external APIs, structured data enrichment, and synchronization across third-party platforms.
+
+</flight_calendar_updater_brief>
+
+bathroom-button
+
+<bathroom_button_brief>
+
+SUMMARY
+- Raspberry Pi music-button project that plays a random song from a locally synced Spotify playlist when a physical button is pressed.
+
+DETAILS
+- The system intentionally bridges software and hardware: Spotify playlist metadata is fetched through the Spotify API, matching songs are pulled from YouTube and cached locally as MP3s, and playback is triggered by a GPIO button on a Raspberry Pi.
+- Runtime behavior is thoughtfully engineered for the physical environment: a GPIO relay can control downstream hardware during playback, button presses can skip tracks, and volume changes automatically by time of day.
+- The project includes both the direct GPIO implementation and a deprecated ESP8266 + MQTT version, which is useful for talking about design evolution and tradeoffs between simpler wired control and more flexible wireless control.
+- Installation and deployment are treated seriously, with scripts for uv/systemd setup, credential configuration, cached media management, and long-running service execution on the Pi.
+- This is a strong “fun but real” project to talk about because it shows embedded thinking, media pipelines, hardware control, and product-minded interaction design in one small system.
+
+</bathroom_button_brief>
+
+service-monitor
+
+<service_monitor_brief>
+
+SUMMARY
+- Raspberry Pi and service-operations knowledge base for repeatable setup, naming, deployment, and maintenance across personal infrastructure projects.
+
+DETAILS
+- Although it is documentation-heavy rather than a traditional app, it solves a real operational problem: reducing repeated setup work and standardizing how services are named, installed, synced, and managed across Raspberry Pi-hosted projects.
+- The most interesting part is the unified renaming tool and naming convention for project directories and systemd units, which helps keep multiple small deployed services consistent as the project set grows.
+- It centralizes practical runbook knowledge such as SSH bootstrapping for headless Pis, shell configuration, rsync flows, git credential setup, package updates, and firmware maintenance.
+- The repo also acts as an index into deeper service-monitoring and systemd docs, so it is effectively a lightweight ops handbook for your personal hardware/software environment.
+- Useful supporting project for interview discussions about developer experience and operations, because it shows that you document infrastructure workflows and build tools around repeatability, not just product features.
+
+</service_monitor_brief>

@@ -1,0 +1,102 @@
+MOHIT NALAVADI
+Senior Software / Data / ML Engineer
+
+CONTACT
+- Phone: +49 174 5423 450
+- Email: mnalavadi@gmail.com
+- GitHub: https://github.com/momonala
+- LinkedIn: https://www.linkedin.com/in/mohit-nalavadi
+
+SUMMARY
+- Senior engineer with a hybrid background across software engineering, data engineering, and applied machine learning, with experience in both startups and product companies.
+- End-to-end ownership of production systems: reverse image search for e‑commerce (embeddings + retrieval), large-scale ETL and analytics pipelines for industrial sensor data, and ML inference pipelines for digital pathology.
+- Comfortable designing, implementing, and operating systems from prototype to production, including infrastructure, observability, and quality/reliability processes.
+- Strong interdisciplinary foundation (biometrics, remote sensing, biology/chemistry, hardware/sensors) that helps in working with domain experts and translating real‑world problems into robust data/ML systems.
+
+CORE SKILLS
+- Programming & Tooling: Python, SQL, Bash, Arduino, Git, Linux, REST APIs, CI/CD, unit and end‑to‑end testing.
+- Data & ML: ETLs and data pipelines, Apache Beam/Dataflow, scientific computing, data visualization, ML‑Ops, model deployment and monitoring.
+- Infrastructure & Cloud: Google Cloud Platform (GCP), Kubernetes, Docker, Ansible, monitoring and logging (e.g. Datadog), production troubleshooting and incident handling.
+- Datastores: PostgreSQL, TimescaleDB, MongoDB, BigQuery; schema design, indexing, performance tuning.
+- Practices: Agile, technical writing, scientific communication, project management, cross‑functional collaboration with product, data science, and operations teams.
+- Domain Knowledge: remote sensing, hardware/sensors, digital pathology, gas leak detection, e‑commerce, biology/chemistry, biomechanics.
+
+EXPERIENCE
+
+ML Engineer — AIgnostics GmbH
+July 2025 – December 2025 | Berlin, Germany
+- Worked on inference and infrastructure for multi‑stage AI pipelines in digital pathology and cancer research, focusing on robust, reproducible model serving for clinical settings.
+- Collaborated with product and engineering to refine the metrics pipeline ahead of a general availability release, clarifying which latency, throughput, and quality signals needed to be captured and how they should be exposed.
+- Migrated the image‑analysis Docker build process from Kaniko to BuildKit, improving build performance and efficiency and reducing CI times.
+- Optimized the inference engine by moving from TensorFlow‑based serving to TensorRT where appropriate, improving throughput and latency for large pathology models.
+- Built compliance and traceability tooling around tests and deployments so that model versions, test runs, and deployment artifacts could be audited for clinical and regulatory requirements.
+
+Senior Data Engineer — Grandperspective GmbH
+2021 – June 2025 | Berlin/Remote, Germany
+- Company mission: early‑warning gas leak detection for industrial factories using infrared (IR) optical measurements.
+- Helped build and operate the core data infrastructure: signal processing pipelines, data visualization backends, ETL pipelines, and GCP‑based cloud infrastructure.
+- Owned the cloud backup and ETL system: exported data from on‑prem Postgres/TimescaleDB (several GB per hour per site) into Avro, uploaded to Google Cloud Storage, and ingested into BigQuery via first a Cloud Function and later an Apache Beam/Dataflow pipeline.
+- Designed the ETL to support pluggable aggregation types and “months of data” views for data scientists and analysts, while keeping on‑prem storage and network constraints in mind.
+- Implemented strategies for late‑arriving data, retries, and backfills in environments with very unreliable connectivity (remote/desert sites), turning intermittent failures into routine operational events instead of crises.
+- Migrated the on‑prem database from vanilla Postgres to TimescaleDB to better support time‑series workloads (hypertables, time‑based partitioning, compression, and efficient time‑bucketed aggregations).
+- Implemented idempotency and deduplication logic for BigQuery (composite keys, daily dedupe jobs once DELETE was available) to maintain data quality despite BigQuery’s lack of exactly‑once guarantees.
+- Worked closely with Data Science to ensure that derived tables and aggregates were stable, documented, and suitable for reporting and modeling, and with DevOps to integrate observability (Datadog) and alerting across the pipeline.
+
+ML Engineer — commercetools GmbH
+2018 – 2021 | Berlin, Germany
+- Built, maintained, and scaled machine learning APIs for e‑commerce use cases.
+- Designed and owned a production reverse image search engine (Image Search API) that indexed 500k+ product images and returned visually similar images in under ~2–3 seconds end‑to‑end.
+  - Used a pretrained VGG16 convolutional neural network (Keras) to generate dense image embeddings.
+  - Stored embeddings and product metadata in PostgreSQL and used cosine similarity (implemented as SQL over vector components) for exact nearest‑neighbor search.
+  - Implemented asynchronous indexing with Celery workers to process and embed large customer catalogs.
+  - Deployed inference to Google Cloud ML Engine for elastic scaling, handling both indexing and query workloads.
+- Managed ML‑Ops for a MongoDB index recommendation engine that scanned weekly MongoDB logs and proposed 10–30 high‑impact indexes to improve query performance; ran across Google Cloud and AWS and interacted with production databases in a controlled, auditable way.
+- Contributed to additional ML features such as a demand‑forecasting API and ML‑based customer clustering to support recommendations and merchandising workflows.
+- Worked with product managers, solution engineers, and customer teams to define requirements, trade‑offs (e.g., latency vs. recall, infra complexity vs. capability), and integration patterns for ML features.
+
+Contract / Internship Experience
+
+Automation Engineer Intern — Amyris
+2017 | Synthetic Biology / Automation
+- Wrote software for robotic automation in a synthetic biology lab, integrating with lab hardware and control systems.
+- Improved computer vision algorithms for a robotic colony counter to more accurately detect, segment, and count biological colonies on plates, improving throughput and reducing manual QC.
+
+Data Science Associate Instructor — General Assembly
+2017 | Part‑Time
+- Assisted in teaching a 10‑week data science course covering Python, pandas, scikit‑learn, and data visualization.
+- Helped students with assignments, debugging, and understanding core ML concepts and best practices.
+
+Hardware QA Engineer — Leif Therapeutics
+2017 | Wearables / Health Tech
+- Worked on a wearable ECG device that uses haptic biofeedback to help manage stress.
+- Built and QA‑tested around 60 beta units, validating hardware and firmware behavior before pre‑production.
+- Developed and executed test plans, logged issues, and collaborated with engineers to improve hardware reliability.
+
+Biomechanics Working Student — NASA Ames (via Young Scientist / academic programs)
+2014 – 2017 | Biomechanics / Space Research
+- Studied biomechanical regulation of the skeleton in microgravity, focusing on how bone adapts to mechanical loading.
+- Wrote algorithms to process data from mechanical strength tests and µCT (3D) imaging of >150 mouse specimens.
+- Performed image analysis and material strength experiments, gaining experience in scientific computing and high‑integrity data analysis pipelines.
+
+Insula: Biophysical Music — Thesis Project
+2016 | Santa Clara University
+- Designed and built a real‑time biofeedback device that converts physiological signals into musical output (“biophysical music”).
+- Collected and processed biosignals (e.g., heart rate, other physiological measures) and mapped them to sound parameters in real time.
+- Integrated hardware sensors, embedded code, and signal‑processing algorithms, and evaluated user responses to the system.
+
+Selected Personal Project — What's On the Menu?
+2026 | https://github.com/momonala/whats-on-the-menu
+- Built a full‑stack web application that uses an LLM (OpenAI Vision models) to translate restaurant menu photos from any language into English, with dish explanations, pronunciations, representative images, and price conversions.
+- Implemented a two‑stage processing pipeline: Stage 1 handles image validation, calls the OpenAI Vision API, structures the output into Pydantic data models, and performs currency conversion; Stage 2 optionally calls the Brave Image Search API to fetch and cache representative images per dish.
+- Designed and implemented the backend in Flask with a clear separation between configuration management, services (OpenAI, image search, forex), and data models, plus comprehensive tests that mock all external APIs.
+- Built a Tailwind‑based frontend with camera support that shows translations immediately while images stream in asynchronously, mirroring production‑grade patterns for latency and responsiveness.
+
+EDUCATION
+- University of Twente — M.Sc. Biometrics & Data Science, 2018
+- Santa Clara University — B.Eng. Biomolecular Engineering, 2016
+
+AWARDS & RECOGNITION
+- Berlin Hack and Tell Winner, January 2019.
+- Young Scientist Program Graduate, Blue Marble Space Institute of Science at NASA, 2017.
+- Best Interdisciplinary Thesis, Santa Clara University, 2016.
+

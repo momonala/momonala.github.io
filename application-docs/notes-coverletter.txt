@@ -1,0 +1,15 @@
+I’m a senior software engineer with a background in molecular biology, and I’ve spent the last 8+ years building and running data- and ML-heavy systems in production. I like owning work end to end, from early prototype to production rollout, especially in small cross-functional teams where I can help set direction and ship maintainable systems.
+
+At AIgnostics, I owned the inference and observability layer for multi-stage AI pipelines in digital pathology and cancer diagnostics. I helped drive production readiness for a GA release: I worked with product and engineering to improve the metrics pipeline, migrated Docker builds from Kaniko to BuildKit to reduce CI time, and optimized inference by moving from TensorFlow to TensorRT for better latency and throughput. I also built compliance and traceability tooling to support clinical and regulatory audits.
+
+At Grandperspective, I owned the cloud backup and ETL system for early-warning gas leak detection using remote sensing data. The system handled terabyte-scale datasets and roughly 1 GB/hour of sensor streams from remote sites with unreliable connectivity. In close collaboration with Data Science and DevOps, I designed and operated an ETL pipeline that moved on-prem TimescaleDB data into GCS and BigQuery using Apache Beam. I implemented idempotency and deduplication in BigQuery, plus handling for late-arriving data and backfills. I also led a migration to TimescaleDB for time-series workloads, which supported a 10x+ increase in client capacity. Along the way, I built visualization backends for high-dimensional data and worked with data scientists to productionize a physics-based gas-detection engine.
+
+At commercetools, I designed and owned a Reverse Image Search API, including embeddings, retrieval, and a query API that returned visually similar product images in under three seconds. I took it from prototype to production in about three months, covering model selection, pipeline design, API implementation, and integration. The system indexed 500k+ images per catalog and supported customers including REWE and Carhartt for use cases like similar-product discovery, duplicate detection, and authentication.
+
+Outside work, I build open-source projects across a broad stack, including iOS, geospatial and transit data, sensors/IoT (Arduino, Raspberry Pi), and LLM applications in vision, translation, and NLP.
+
+I enjoy working at the intersection of data, ML, and Python engineering, and I’ve delivered production systems across all three. In my next role, I’m looking for interesting problems, clear business goals, strong engineering practices, and close collaboration across disciplines. I also enjoy mentoring junior engineers and want to keep growing in data-intensive systems, architecture, and system design.
+
+Thank you for considering my application.
+With appreciation,
+Mohit Nalavadi
