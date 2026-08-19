@@ -1,3 +1,20 @@
+AIgnostics: 
+Digital Pathology Foundation Models (Inference + Compliance)
+
+<aignostics_digital_pathology_inference_metrics_compliance_brief>
+
+SUMMARY
+- Worked on inference and infrastructure for multi-stage AI pipelines in digital pathology and cancer research, focused on robust, reproducible model serving for clinical settings using foundation models (~2B parameters, 5M+ training images).
+- Collaborated with product and engineering to refine the metrics pipeline ahead of general availability (GA), clarifying which latency, throughput, and quality signals needed to be captured and exposed.
+- Migrated the image-analysis Docker build process from Kaniko to BuildKit, cutting CI build times by 50% while improving build performance and efficiency.
+- Optimized inference by moving from TensorFlow-based serving to TensorRT where appropriate, improving throughput and latency for large pathology models.
+- Built compliance tooling for traceability of tests and deployments so model versions, test runs, and deployment artifacts could be audited for clinical and regulatory requirements.
+
+INTERVIEW TALKING POINTS
+- A good example of “productionizing” ML: performance tuning (TensorRT), measurable readiness for GA (metrics), and auditability/traceability for compliance.
+
+</aignostics_digital_pathology_inference_metrics_compliance_brief>
+
 Commercetools:
 Reverse Image Search Engine
 
@@ -20,7 +37,7 @@ ARCHITECTURE & INFRASTRUCTURE
 - Storage: PostgreSQL for embeddings and metadata (no dedicated vector DB). Exact cosine search in SQL was sufficient for our scale and kept ops simple.
 
 SCALE, LATENCY, PERFORMANCE
-- Latency target: responses within ~3 seconds end-to-end.
+- Latency target: responses within <2 seconds end-to-end.
 - Scale: Hundreds of thousands of images per customer catalog; indexing and query load handled by ML Engine scaling and Celery.
 - Tradeoff: Tuned embedding dimensionality to keep retrieval quality while staying within latency and storage budgets.
 
@@ -58,7 +75,7 @@ Cloud Sync Backup System
 <grandperspective_cloud_backup_etl_brief>
 
 SUMMARY
-- At Grandperspective GmbH: early-warning gas leak detection for industrial factories using IR optical measurements. I helped build data infrastructure (signal processing, data visualization, Google Cloud, ETLs) and worked closely with Data Science and DevOps on platform uptime, data availability, and end-to-end monitoring and testing. I owned the cloud backup system and ETL systems. Remote sensors were on-prem, often in deserts or locations without reliable internet. Devices produced one image and ~60–100 infrared spectra every 6 seconds → several GB per hour. Data was backed up in batches (streaming was tested): package Postgres data into .avro → upload to GCS for archival → Cloud Function initially dumped into BigQuery; later the second half was refactored to Apache Beam/Dataflow for aggregations, pluggable aggregation types, and analysis over months of data.
+- At Grandperspective GmbH: early-warning gas leak detection for industrial factories using IR optical measurements, powering real-time, 24/7 remote sensing (gas leaks) that detected 400+ gases across km-scale sites in seconds. I helped build data infrastructure (signal processing, data visualization, including high-dimensional FTIR image visualization, Google Cloud, ETLs) and worked closely with Data Science and DevOps on platform uptime (99% uptime), data availability, and end-to-end monitoring and testing. I also helped grow the client base by 5x. I owned the cloud backup system and ETL systems. Remote sensors were on-prem, often in deserts or locations without reliable internet. Devices produced one image and ~60–100 infrared spectra every 6 seconds → several GB per hour (4TB+ total sensor data, ~24GB/day per system). Data was backed up in batches (streaming was tested): package Postgres data into .avro → upload to GCS for archival → Cloud Function initially dumped into BigQuery; later the second half was refactored to Apache Beam/Dataflow for aggregations, pluggable aggregation types, and analysis over months of data.
 
 ARCHITECTURE (BACKUP + ETL)
 - On-prem: Postgres (later TimescaleDB) with sensor data (images, IR spectra, metadata). Indexes on time and scan area; large columns (images, large JSON settings, IR spectra) lazy-loaded where possible.

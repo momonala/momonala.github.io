@@ -24,33 +24,33 @@ CORE SKILLS
 EXPERIENCE
 
 ML Engineer — AIgnostics GmbH
-July 2025 – December 2025 | Berlin, Germany
-- Worked on inference and infrastructure for multi‑stage AI pipelines in digital pathology and cancer research, focusing on robust, reproducible model serving for clinical settings.
+2025 – 2026 | Berlin, Germany
+- Worked on inference and infrastructure for multi‑stage AI pipelines powering digital pathology foundation models (~2B parameters, 5M+ training images) in cancer research, with a focus on robust, reproducible model serving for clinical settings.
 - Collaborated with product and engineering to refine the metrics pipeline ahead of a general availability release, clarifying which latency, throughput, and quality signals needed to be captured and how they should be exposed.
-- Migrated the image‑analysis Docker build process from Kaniko to BuildKit, improving build performance and efficiency and reducing CI times.
-- Optimized the inference engine by moving from TensorFlow‑based serving to TensorRT where appropriate, improving throughput and latency for large pathology models.
-- Built compliance and traceability tooling around tests and deployments so that model versions, test runs, and deployment artifacts could be audited for clinical and regulatory requirements.
+- Migrated the image‑analysis Docker build process from Kaniko to BuildKit, improving build performance and efficiency and reducing CI build times by 50%.
+- Optimized the inference engine from TensorFlow‑based serving to TensorRT where appropriate, improving throughput and latency for large pathology models.
+- Built compliance tooling for traceability of our tests and deployments, so model versions, test runs, and deployment artifacts could be audited for clinical and regulatory requirements.
 
 Senior Data Engineer — Grandperspective GmbH
-2021 – June 2025 | Berlin/Remote, Germany
-- Company mission: early‑warning gas leak detection for industrial factories using infrared (IR) optical measurements.
-- Helped build and operate the core data infrastructure: signal processing pipelines, data visualization backends, ETL pipelines, and GCP‑based cloud infrastructure.
-- Owned the cloud backup and ETL system: exported data from on‑prem Postgres/TimescaleDB (several GB per hour per site) into Avro, uploaded to Google Cloud Storage, and ingested into BigQuery via first a Cloud Function and later an Apache Beam/Dataflow pipeline.
+2021 – 2025 | Berlin/Remote, Germany
+- Company mission: early‑warning gas leak detection for industrial factories using infrared (IR) optical measurements—real‑time, 24/7 remote sensing that detected 400+ gases across km-scale sites in seconds.
+- Helped build and operate the core data infrastructure: signal processing pipelines, including a data visualization system for high-dimensional FTIR images, ETL pipelines, and GCP‑based cloud infrastructure—and supported growth by 5x in the client base.
+- Owned the cloud backup and ETL system: exported data from on‑prem Postgres/TimescaleDB (several GB per hour per site; 4TB+ total sensor data, ~24GB/day per system) into Avro, uploaded to Google Cloud Storage, and ingested into BigQuery via first a Cloud Function and later an Apache Beam/Dataflow pipeline.
 - Designed the ETL to support pluggable aggregation types and “months of data” views for data scientists and analysts, while keeping on‑prem storage and network constraints in mind.
 - Implemented strategies for late‑arriving data, retries, and backfills in environments with very unreliable connectivity (remote/desert sites), turning intermittent failures into routine operational events instead of crises.
 - Migrated the on‑prem database from vanilla Postgres to TimescaleDB to better support time‑series workloads (hypertables, time‑based partitioning, compression, and efficient time‑bucketed aggregations).
 - Implemented idempotency and deduplication logic for BigQuery (composite keys, daily dedupe jobs once DELETE was available) to maintain data quality despite BigQuery’s lack of exactly‑once guarantees.
-- Worked closely with Data Science to ensure that derived tables and aggregates were stable, documented, and suitable for reporting and modeling, and with DevOps to integrate observability (Datadog) and alerting across the pipeline.
+- Worked closely with Data Science to ensure that derived tables and aggregates were stable, documented, and suitable for reporting and modeling, and with DevOps to integrate observability (Datadog) and alerting across the pipeline—ensuring 99% platform uptime and data availability.
 
 ML Engineer — commercetools GmbH
 2018 – 2021 | Berlin, Germany
-- Built, maintained, and scaled machine learning APIs for e‑commerce use cases.
-- Designed and owned a production reverse image search engine (Image Search API) that indexed 500k+ product images and returned visually similar images in under ~2–3 seconds end‑to‑end.
+- Built, maintained, and scaled machine learning APIs for high‑traffic e‑commerce applications.
+- Designed and owned a production reverse image search engine (Image Search API) that indexed 500k+ product images and returned nearest neighbors in <2s for real‑time product discovery end‑to‑end.
   - Used a pretrained VGG16 convolutional neural network (Keras) to generate dense image embeddings.
   - Stored embeddings and product metadata in PostgreSQL and used cosine similarity (implemented as SQL over vector components) for exact nearest‑neighbor search.
   - Implemented asynchronous indexing with Celery workers to process and embed large customer catalogs.
   - Deployed inference to Google Cloud ML Engine for elastic scaling, handling both indexing and query workloads.
-- Managed ML‑Ops for a MongoDB index recommendation engine that scanned weekly MongoDB logs and proposed 10–30 high‑impact indexes to improve query performance; ran across Google Cloud and AWS and interacted with production databases in a controlled, auditable way.
+- Managed ML‑Ops for a MongoDB index recommendation engine that scanned weekly MongoDB logs and proposed 10–30 high‑impact indexes to improve query performance (up to 50%); ran across Google Cloud and AWS and interacted with production databases in a controlled, auditable way.
 - Contributed to additional ML features such as a demand‑forecasting API and ML‑based customer clustering to support recommendations and merchandising workflows.
 - Worked with product managers, solution engineers, and customer teams to define requirements, trade‑offs (e.g., latency vs. recall, infra complexity vs. capability), and integration patterns for ML features.
 
