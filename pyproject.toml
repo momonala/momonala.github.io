@@ -5,15 +5,7 @@ description = ""
 authors = [{name = "Mohit Nalavadi"}]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "pytest>=8.0.0",
-    "pytest-cov>=4.0.0",
-    "black",
-    "jupyter>=1.1.1",
-    "notebook>=7.5.1",
-    "pandas>=2.3.3",
-    "ruff>=0.14.10",
-]
+dependencies = []
 
 [build-system]
 requires = ["hatchling"]
